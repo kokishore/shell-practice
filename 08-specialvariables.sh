@@ -8,4 +8,4 @@ echo "To Know the current user : $USER "
 echo "To know number variables passed to the script : $# "
 echo " To know the PID of the script : $$ "
 sleep 20 &
-ech0 "To know the PID of the which is running in the background : $! "
+echo "To know the PID of the which is running in the background : $! "
