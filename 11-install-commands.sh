@@ -8,7 +8,7 @@ then
 else    
     echo "You already running with root access "
 fi 
-dnf install mysql -y
+dnf install mysqlzzzzz -y
 if [ $? -eq 0 ]
 then
     echo "Installing Mysql is ....Success"
