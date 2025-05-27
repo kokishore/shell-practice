@@ -1,9 +1,10 @@
 #!/bin/bash
 
 USERID=$(id -u)
-if [ $USERID -eq 0 ]
+if [ $USERID -ne 0 ]
 then
-     echo " You are running with root access "
+     echo "error:you are not running with root access Please run with root access "
 else    
-    echo "you are not running with roor access Please run with root access"
+    echo "You already running with root access "
 fi 
+
