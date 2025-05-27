@@ -24,7 +24,6 @@ else
  echo " My sql is already installed .... nothing to do "
  fi
 
-fi 
 dnf list installed python3
 if [ $? -ne 0 ]
 then 
@@ -41,7 +40,7 @@ else
  echo " My python3 is already installed .... nothing to do "
  fi
 
- fi 
+ 
 dnf list installed nginx 
 if [ $? -ne 0 ]
 then 
