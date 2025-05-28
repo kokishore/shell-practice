@@ -1,54 +1,57 @@
+
 #!/bin/bash
 
+USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
-N=\e[34m"
+N="\e[0m"
 
-USERID=$(id -u)
 if [ $USERID -ne 0 ]
 then
-     echo -e "$R error:you are not running with root access Please run with root access  $N "
-     exit 1
-else    
-    echo -e "$G You already running with root access $N "
-fi 
+    echo -e "$R ERROR:: Please run this script with root access $N"
+    exit 1 #give other than 0 upto 127
+else
+    echo "You are running with root access"
+fi
+
 # validate functions takes input as exit status, what command they tried to install
 VALIDATE(){
     if [ $1 -eq 0 ]
-   then
-    echo -e "Installing $2 is ....$G Success $N "
-   else
-    echo -e "Installing $2 is .... $R Failure $N "
-    exit 1
+    then
+        echo -e "Installing $2 is ... $G SUCCESS $N"
+    else
+        echo -e "Installing $2 is ... $R FAILURE $N"
+        exit 1
     fi
 }
-dnf list installed mysql 
+
+dnf list installed mysql
 if [ $? -ne 0 ]
-then 
-    echo -e  "$Y My Sql is not installed....We are going to install it now $N "
-dnf install mysql -y
-VALIDATE $? "mysql"   
+then
+    echo "MySQL is not installed... going to install it"
+    dnf install mysql -y
+    VALIDATE $? "MySQL"
 else
- echo -e " $B My sql is already installed .... nothing to do $N"
- fi
+    echo -e "Nothing to do MySQL... $Y already installed $N"
+fi
 
 dnf list installed python3
 if [ $? -ne 0 ]
-then 
-    echo -e "$R My python3 is not installed....We are going to install it now"
-dnf install mysql -y
-  VALIDATE $? "python3"
+then
+    echo "python3 is not installed... going to install it"
+    dnf install python3 -y
+    VALIDATE $? "python3"
 else
- echo -e " $R python3 is already installed .... nothing to do "
- fi
- 
-dnf list installed nginx 
+    echo -e "Nothing to do python... $Y already installed $N"
+fi
+
+dnf list installed nginx
 if [ $? -ne 0 ]
-then 
-    echo -e "$R nginx is not installed....We are going to install it now" $N
-dnf install nginx -y
-   VALIDATE $? "nginx"
+then
+    echo "nginx is not installed... going to install it"
+    dnf install nginx -y
+    VALIDATE $? "nginx"
 else
-    echo -e "$Y My nginx is already installed .... nothing to do $N"
- fi
+    echo -e "Nothing to do nginx... $Y already installed $N"
+fi
